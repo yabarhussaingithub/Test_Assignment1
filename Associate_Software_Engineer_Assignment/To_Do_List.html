@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        #taskList {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin: 5px;
+        }
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button id="addTaskButton">Add Task</button>
+    <ul id="taskList"></ul>
+    
+    <script>
+        const taskInput = document.getElementById("taskInput");
+        const addTaskButton = document.getElementById("addTaskButton");
+        const taskList = document.getElementById("taskList");
+
+        // Function to add a task
+        function addTask() {
+            if (taskInput.value.trim() === "") return;
+            
+            const li = document.createElement("li");
+            li.textContent = taskInput.value;
+            
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remove";
+            removeButton.onclick = function () {
+                taskList.removeChild(li);
+            };
+            
+            li.appendChild(removeButton);
+            taskList.appendChild(li);
+            taskInput.value = "";
+        }
+
+        // Add event listener for button click
+        addTaskButton.addEventListener("click", addTask);
+
+        // Add event listener for Enter key
+        taskInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        });
+    </script>
+</body>
+</html>

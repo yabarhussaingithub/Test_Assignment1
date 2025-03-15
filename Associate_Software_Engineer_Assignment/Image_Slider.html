@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Slider</title>
+    <style>
+        #slider-container {
+            text-align: center;
+        }
+        img {
+            width: 400px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    <div id="slider-container">
+        <h2>Image Slider</h2>
+        <button onclick="prevImage()">Previous</button>
+        <img id="slider" src="">
+        <button onclick="nextImage()">Next</button>
+    </div>
+    
+    <script>
+        let images = [
+            "Slider_Images/One.jpg",
+            "Slider_Images/Two.jpeg",
+            "Slider_Images/Three.jpg"
+        ];
+        
+        let index = 0;
+        document.getElementById("slider").src = images[index];
+        
+        function nextImage() {
+            index = (index + 1) % images.length;
+            document.getElementById("slider").src = images[index];
+        }
+        
+        function prevImage() {
+            index = (index - 1 + images.length) % images.length;
+            document.getElementById("slider").src = images[index];
+        }
+    </script>
+</body>
+</html>
